@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .section {
+            width: 30%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .visual {
+            min-height: 100px;
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+        .visual-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            min-height: 50px;
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .element {
+            width: 50px;
+            height: 30px;
+            background: #007BFF;
+            color: white;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Structures Visualization</h1>
+    <div class="container">
+        <div class="section">
+            <h2>Stack</h2>
+            <img src="https://cdn.programiz.com/sites/tutorial2program/files/stack-operations.png" width="500px", height="220px">
+            <p>A stack is a linear data structure that follows the Last In, First Out (LIFO) principle. Elements are added and removed from the same end.</p>
+            <input type="text" id="stackInput" placeholder="Enter value">
+            <button onclick="pushStack()">Push</button>
+            <button onclick="popStack()">Pop</button>
+            <div class="visual" id="stack"></div>
+        </div>
+        <div class="section">
+            <h2>Queue</h2>
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220816162225/Queue.png" width="500px", height="220px">
+            <p>A queue is a linear data structure that follows the First In, First Out (FIFO) principle. Elements are added at the back and removed from the front.</p>
+            <input type="text" id="queueInput" placeholder="Enter value">
+            <button onclick="enqueue()">Enqueue</button>
+            <button onclick="dequeue()">Dequeue</button>
+            <div class="visual-horizontal" id="queue"></div>
+        </div>
+        <div class="section">
+            <h2>Linked List</h2>
+            <img src="https://www.masaischool.com/blog/content/images/2022/06/Insertion-in-linked-lists--3-.png" width="500px", height="200px">
+            <p>A linked list is a collection of nodes where each node contains a value and a reference to the next node. It allows efficient insertion and deletion of elements.</p>
+            <div class="button-container">
+                <input type="text" id="linkedListInput" placeholder="Enter value">
+                <button onclick="addNode()">Add Node</button>
+                <button onclick="removeNode()">Remove Node</button>
+            </div>
+            <div class="visual-horizontal" id="linkedList"></div>
+        </div>
+    </div>
+    <script>
+        let stack = [];
+        let queue = [];
+        let linkedList = [];
+
+        function updateVisual(id, structure, isHorizontal = false) {
+            const container = document.getElementById(id);
+            container.innerHTML = '';
+            structure.forEach((item) => {
+                let div = document.createElement('div');
+                div.classList.add('element');
+                div.textContent = item;
+                container.appendChild(div);
+            });
+        }
+
+        function pushStack() {
+            let value = document.getElementById("stackInput").value;
+            if (value) {
+                stack.push(value);
+                updateVisual('stack', stack);
+                document.getElementById("stackInput").value = '';
+            }
+        }
+
+        function popStack() {
+            if (stack.length > 0) {
+                stack.pop();
+                updateVisual('stack', stack);
+            }
+        }
+
+        function enqueue() {
+            let value = document.getElementById("queueInput").value;
+            if (value) {
+                queue.push(value);
+                updateVisual('queue', queue, true);
+                document.getElementById("queueInput").value = '';
+            }
+        }
+
+        function dequeue() {
+            if (queue.length > 0) {
+                queue.shift();
+                updateVisual('queue', queue, true);
+            }
+        }
+
+        function addNode() {
+            let value = document.getElementById("linkedListInput").value;
+            if (value) {
+                linkedList.push(value);
+                updateVisual('linkedList', linkedList, true);
+                document.getElementById("linkedListInput").value = '';
+            }
+        }
+
+        function removeNode() {
+            let value = document.getElementById("linkedListInput").value;
+            let index = linkedList.indexOf(value);
+            if (index !== -1) {
+                linkedList.splice(index, 1);
+                updateVisual('linkedList', linkedList, true);
+                document.getElementById("linkedListInput").value = '';
+            } else {
+                alert("Value not found in the linked list");
+            }
+        }
+    </script>
+</body>
+</html>
