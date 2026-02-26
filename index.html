@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DS Visualizer - Undo Feature</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Data Structures Visualizer</h1>
+
+<div class="container">
+
+    <!-- STACK -->
+    <div class="section">
+        <h2>Stack</h2>
+        <div id="stackStatus" class="status"></div>
+        <input id="stackInput" type="number" placeholder="Enter value" required>
+        <button onclick="pushStack()">Push</button>
+        <button onclick="popStack()">Pop</button>
+        <button onclick="undoStack()">Undo</button>
+        <div class="visual" id="stack"></div>
+    </div>
+
+    <!-- QUEUE -->
+    <div class="section">
+        <h2>Queue</h2>
+        <div id="queueStatus" class="status"></div>
+        <input id="queueInput" type="number" placeholder="Enter value" required>
+        <button onclick="enqueue()">Enqueue</button>
+        <button onclick="dequeue()">Dequeue</button>
+        <button onclick="undoQueue()">Undo</button>
+        <div class="visual-horizontal" id="queue"></div>
+    </div>
+
+    <!-- LINKED LIST -->
+    <div class="section">
+        <h2>Linked List</h2>
+        <div id="llStatus" class="status"></div>
+        <input id="llInput" type="number" placeholder="Enter value" required>
+        <button onclick="insertLL()">Insert</button>
+        <button onclick="deleteLL()">Delete</button>
+        <button onclick="traverseLL()">Traverse</button>
+        <button onclick="undoLL()">Undo</button>
+
+        <!-- Legend for prev/curr -->
+        <div class="legend">
+            <span class="currLegend">🔴 Curr Node</span>
+            <span class="prevLegend">🟠 Prev Node</span>
+        </div>
+
+        <div class="visual-horizontal" id="linkedList"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
